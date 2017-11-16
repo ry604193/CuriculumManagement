@@ -1,5 +1,5 @@
 <?php
-
+require_once('../model/students_db.php');
 
 $action = filter_input(INPUT_POST, 'action');
 if ($action === NULL) {
@@ -20,7 +20,6 @@ switch ($action) {
         include('add_students.php');
         break;
     case 'add_student':
-        require_once('../model/students_db.php');
         $studentID = filter_input(INPUT_POST, 'studentid');
         $is_valid = get_student($studentID);
         if(empty($is_valid)){

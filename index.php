@@ -1,12 +1,21 @@
 <?php
-require('model/database.php');
+require_once('model/database.php');
 require_once('model/students_db.php');
-require('model/teacher_db.php');
-require('model/validate_teachers.php');
-require('model/validate_students.php');
+require_once('model/teacher_db.php');
+require_once('model/validate_teachers.php');
+require_once('model/validate_students.php');
 
 // Start session
 session_start();
+// 10 mins in seconds
+$inactive = 10; 
+
+$session_life = time() - $_session['timeout'];
+
+if($session_life > $inactive)
+{  session_destroy(); header("Location: logout.php");     }
+
+$_SESSION['timeout']=time();
 
 $action = filter_input(INPUT_POST, 'action');
 if ($action === NULL) {
