@@ -46,6 +46,9 @@ switch ($action) {
             $student = "Student";
             include ('./View/login.php');
             break;
+    case 'end_session':
+        include('logout.php');
+        break;
     case 'home':
         // If customer is not in the session, set it in the session
         if (isset($_SESSION['teacher'])) {

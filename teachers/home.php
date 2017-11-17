@@ -9,9 +9,9 @@
                     <div class="inner">
                         <h3 class="masthead-brand">Cover</h3>
                         <nav class="nav nav-masthead">
-                            <a class="nav-link active" href="">Dashboard</a>
+                            <a class="nav-link active" href="/<?php echo htmlspecialchars($basedir) ?>/teachers/index.php?action=dashboard">Dashboard</a>
                             <a class="nav-link" href="/<?php echo htmlspecialchars($basedir) ?>/index.php?action=logout"><?php echo htmlspecialchars('Logout')?></a>
-                            <a class="nav-link" href="https://v4-alpha.getbootstrap.com/examples/cover/#">Contact</a>
+                            <a class="nav-link" href="/<?php echo htmlspecialchars($basedir) ?>/index.php?action=end_session">Contact</a>
                         </nav>
                     </div>
                 </div>
