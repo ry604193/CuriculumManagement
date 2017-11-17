@@ -1,7 +1,12 @@
 
 <?php include 'header.php' ?>
     <div class="container">
-
+      
+    <?php if (!empty($error_message)) { ?>
+        <div class="alert alert-danger" role="alert">
+        <strong>Oh snap!</strong> <?php echo htmlspecialchars($error_message); ?>
+      </div>
+    <?php } // end if ?> 
       <form class="form-signin" method="post" action="">
         <h2 class="form-signin-heading">Please sign in</h2>
         <label for="username" class="sr-only">Username</label>

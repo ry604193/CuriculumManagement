@@ -35,6 +35,10 @@ switch ($action) {
         $password = "";
         $teacher = "Teacher";
         $student = "Student";
+        $error_message = $_SESSION['errors'];
+        if(!empty($error_message)){
+            $_SESSION['errors'] = '';
+        }
         include('view/login.php');
         break;
     case 'logout':
@@ -75,7 +79,7 @@ switch ($action) {
          //redirect valid user to thier home page
          if($user === 'Teacher'){
             //validate user
-            $is_teacher_valid = teacher_is_valid($username,$userpass );
+            $is_teacher_valid = teacher_is_valid($username,$userpass);
             if($is_teacher_valid === true){
                 $_SESSION['teacher'] = get_teacher($username);
                 $the_teacher =  $_SESSION['teacher'];
@@ -83,7 +87,9 @@ switch ($action) {
                 include('teachers/home.php');
                 break;
             } else {
+                $_SESSION['errors'] = "Either username and or password is incorrect.";
                 include('view/login.php');
+                break;
             }
              
          } else {
