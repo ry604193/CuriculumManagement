@@ -53,20 +53,6 @@ switch ($action) {
     case 'end_session':
         include('logout.php');
         break;
-    case 'home':
-        // If customer is not in the session, set it in the session
-        if (isset($_SESSION['teacher'])) {
-            include('teachers/index.php');
-            break;
-        }else{
-            include('students/index.php');
-            break;
-        }
-
-        $customer = $_SESSION['customer'];
-        $products = get_products();
-        include('product_register.php');
-        break;
      case 'login_valadation':
          //get user input
          $user = filter_input(INPUT_POST, 'user');
@@ -80,13 +66,14 @@ switch ($action) {
          if($user === 'Teacher'){
             //validate user
             $is_teacher_valid = teacher_is_valid($username,$userpass);
-            if($is_teacher_valid === true){
+            if($is_teacher_valid === TRUE){
                 $_SESSION['teacher'] = get_teacher($username);
                 $the_teacher =  $_SESSION['teacher'];
                
                 include('teachers/home.php');
                 break;
-            } else {
+            }
+            else if($is_teacher_valid === FALSE) {
                 $_SESSION['errors'] = "Either username and or password is incorrect.";
                 include('view/login.php');
                 break;
